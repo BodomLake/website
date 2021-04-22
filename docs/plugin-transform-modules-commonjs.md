@@ -82,7 +82,7 @@ require("@babel/core").transformSync("code", {
 CommonJS modules and ECMAScript modules are not fully compatible. However, compilers, bundlers and JavaScript
 runtimes developed different strategies to make them work together as well as possible.
 
-This option specify which interop strategy Babel should use. When it's a function, Babel calls this function
+This option specifies which interop strategy Babel should use. When it's a function, Babel calls this function
 passing the import specifier (for example, `@babel/core` in `import { transform } from "@babel/core"`), and the
 function should return the interop to use for that specific import.
 
