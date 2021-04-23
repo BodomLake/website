@@ -79,7 +79,7 @@ require("@babel/core").transformSync("code", {
 
 `"babel" | "node" | "none"`, or `(specifier: string) => "babel" | "node" | "none"`. Defaults to `"babel"`.
 
-CommonJS modules and ECMAScript modules are not fully compatible. However, compilers, bundlers and JavaScript
+Though CommonJS and ECMAScript modules are not fully compatible, JavaScript compilers, bundlers and runtimes have developed a number of different strategies for interoperability.
 runtimes developed different strategies to make them work together as well as possible.
 
 This option specifies which interop strategy Babel should use. When it's a function, Babel calls this function
@@ -88,7 +88,7 @@ function should return the interop to use for that specific import.
 
 #### `"babel"`
 
-When using exports with babel a non-enumerable `__esModule` property is exported. This property is then used to determine if the import _is_ the default export or if it _contains_ the default export.
+When using exports with Babel, a non-enumerable `__esModule` property is exported. This property is then used to determine if the import _is_ the default export or if it _contains_ the default export.
 
 ```javascript
 import foo from "foo";
@@ -111,7 +111,7 @@ _foo.default;
 _bar.bar;
 ```
 
-When this import interop is used, if both the imported and the importer module are compiled with Babel they behave as if none of them was compiled.
+When this import interop is used, if both the imported and the importer module are compiled with Babel they behave as if none were compiled.
 
 This is the default behavior.
 
@@ -136,7 +136,7 @@ _foo;
 _bar.bar;
 ```
 
-This is not exactly the same as what Node.js does since Babel allows accessing any property of `module.exports` as a named export, while Node.js only allows importing _statically analyzable_ properties of `module.exports`. However, any import working in Node.js will also work when compiled with Babel using `importInterop: "node"`.
+Note that this is not _exactly_ the same as what Node.js does. Babel allows accessing any property of `module.exports` as a named export, whereas Node.js only allows importing the _statically analyzable_ properties of `module.exports`. However, any import working in Node.js will also work when compiled with Babel using `importInterop: "node"`.
 
 #### `"none"`
 
@@ -241,6 +241,4 @@ The two cases where imports can never be lazy are:
 
 `boolean`, defaults to `false`
 
-> ⚠️ **Deprecated**: Use the `importInterop` option instead.
-
-When set to `true`, this option has the same behavior as setting `importInterop: "none"`.
+> ⚠️ **Deprecated**: Use the `importInterop: "none"` option instead.
